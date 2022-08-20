@@ -19,16 +19,17 @@ Enterprise grade flutter template.
 
 ## TODO Problems
 
-1. Catcher (Exception managment with modals for client ) 
-2. Widget testing
-3. Integration testing
+1. Catcher (Exception managment with modals for client )* 
+2. Widget testing*
+3. Integration testing*
 4. Notification
-5. WEB/LINUX/WINDOWS/MAC compatibility
-6. Tools for adaptive UI
+5. WEB/LINUX/WINDOWS/MAC compatibility*
+6. Tools for adaptive UI*
 7. Native code template (Rust,C,C++,WebAssembly)*
 8. Deploy scripts*
 9. Add different variants of state managment (RxDart approach, Bloc approach)
-10. Check compatability with old vesion of Android and IOS , Web browsers , Linux OS, Windows (10,11), Mac OS (catalina and higher)
+10. Check compatability with old vesion of Android and IOS , Web browsers , Linux OS, Windows (10,11), Mac OS (catalina and higher)*
+11. Code documentation*
 
 ## Prerequisites
 1. Installed  LTS Node JS
