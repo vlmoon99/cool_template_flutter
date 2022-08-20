@@ -1,0 +1,22 @@
+{
+    "launch.title": "Test",
+    "login.title": "Login",
+    "login.forgotPassword": "Did you forget your password",
+    "login.registerNewAccount": "Register a new account",
+    "forgotPassword.title": "To send activation reset code -> write your email",
+    "forgotPassword.sendResetPasswordKey": "Send ",
+    "resetPassword.title": "Reset your password",
+    "resetPassword.resetButton": "Reset",
+    "register.title": "Register",
+    "editAccount.title": "Edit Account",
+    "editAccount.sendButton": "Edit",
+    "changePassword.title": "Change Password",
+    "changePassword.changeButton": "Change",
+    "entity.title": "Entity",
+    "settings.title" : "Settings",
+    "settings.accountListTitleText" : "Account",
+    "settings.passwordListTitleText" : "Password",
+    "settings.singOutListTitleText" : "Sign Out"
+
+
+}
