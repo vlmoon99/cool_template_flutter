@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:cool_template/exceptions/exceptions.dart';
 import 'package:cool_template/models/device_user_info.dart';
@@ -12,14 +13,16 @@ import 'interceptors/mobile_info_interceptor.dart';
 class NetworkClient {
   late Dio _dio;
   final Catcher catcher;
-  NetworkClient(this.catcher,{required String baseUrl,}) {
+  NetworkClient(
+    this.catcher, {
+    required String baseUrl,
+  }) {
     _dio = Dio();
     _dio.options.baseUrl = baseUrl;
     _dio.options.connectTimeout = 5000;
     _dio.options.receiveTimeout = 3000;
     _dio.interceptors.add(LoggingInterceptor());
     _dio.interceptors.add(AuthorizationInterceptor());
-
     _dio.interceptors
         .add(AddMobileInfoInterceptor(deviceUserInfo: DeviceUserInfo()));
   }

@@ -142,7 +142,7 @@ class CustomInputDecoration {
     );
   }
 }
-//TODO Unit testing
+
 class AppTheme {
   final _darkTheme = ThemeData.dark().copyWith(
     extensions: <ThemeExtension<dynamic>>[

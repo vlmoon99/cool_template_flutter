@@ -3,10 +3,11 @@ import 'package:cool_template/models/user.dart';
 import 'package:cool_template/network/network_client.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:mockito/annotations.dart';
+
 //Check 1
 @GenerateMocks([JhipsterSettingsService])
 class JhipsterSettingsService {
-  JhipsterSettingsService(this.networkClient,this.secureStorage);
+  JhipsterSettingsService(this.networkClient, this.secureStorage);
 
   final NetworkClient networkClient;
   final FlutterSecureStorage secureStorage;
