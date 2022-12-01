@@ -1,12 +1,8 @@
 import 'package:cool_template/assets/localizations/localizations_strings.dart';
-import 'package:cool_template/models/user.dart';
-import 'package:cool_template/modules/jhipster_auth/services/jhipster_auth_services.dart';
-import 'package:cool_template/modules/jhipster_auth/widgets/auth_button.dart';
-import 'package:cool_template/routes/routes.dart';
+import 'package:cool_template/modules/auth/widgets/auth_button.dart';
 import 'package:cool_template/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:flutter_modular/flutter_modular.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 class RegisterPageActionsButtons extends StatelessWidget {
@@ -28,19 +24,9 @@ class RegisterPageActionsButtons extends StatelessWidget {
       color: colors.customColor,
       onPress: () async {
         if (_formKey.currentState?.saveAndValidate() ?? false) {
-          final password = _formKey.currentState!.value['password'];
-          final username = _formKey.currentState!.value['username'];
-          final email = _formKey.currentState!.value['email'];
-          final authService = Modular.get<JhipsterAuthService>();
-
-          authService
-              .register(JhipsterRegisterUser(
-                  login: username, password: password, email: email))
-              .then((value) {
-            if (value) {
-              Modular.to.navigate(Routes.auth.getModule());
-            }
-          });
+          // final password = _formKey.currentState!.value['password'];
+          // final username = _formKey.currentState!.value['username'];
+          // final email = _formKey.currentState!.value['email'];
         }
       },
       child: Text(

@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:io';
 
 import 'package:cool_template/exceptions/exceptions.dart';
 import 'package:cool_template/models/device_user_info.dart';
