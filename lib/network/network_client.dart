@@ -1,30 +1,23 @@
 import 'dart:convert';
-import 'dart:io';
 
 import 'package:cool_template/exceptions/exceptions.dart';
-import 'package:cool_template/models/device_user_info.dart';
-import 'package:cool_template/network/interceptors/authorization_interceptor.dart';
+import 'package:cool_template/network/network_resource.dart';
 import 'package:dio/dio.dart';
-import 'interceptors/logging_interceptor.dart';
-import 'interceptors/mobile_info_interceptor.dart';
-
-//TODO Check 1
 
 class NetworkClient {
   late Dio _dio;
   final Catcher catcher;
-  NetworkClient(
-    this.catcher, {
-    required String baseUrl,
-  }) {
+  final NetworkResource networkResource;
+
+  NetworkClient(this.catcher, this.networkResource) {
     _dio = Dio();
-    _dio.options.baseUrl = baseUrl;
-    _dio.options.connectTimeout = 5000;
-    _dio.options.receiveTimeout = 3000;
-    _dio.interceptors.add(LoggingInterceptor());
-    _dio.interceptors.add(AuthorizationInterceptor());
-    _dio.interceptors
-        .add(AddMobileInfoInterceptor(deviceUserInfo: DeviceUserInfo()));
+    _dio.options.baseUrl = networkResource.baseUrl;
+    _dio.options.connectTimeout = networkResource.connectTimeout;
+    _dio.options.receiveTimeout = networkResource.receiveTimeout;
+
+    for (var element in networkResource.interceptors) {
+      _dio.interceptors.add(element);
+    }
   }
 
   AppExceptions _handleError(DioError e) {
