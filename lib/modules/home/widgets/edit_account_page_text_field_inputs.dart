@@ -1,4 +1,3 @@
-import 'package:cool_template/models/user.dart';
 import 'package:cool_template/theme/app_theme.dart';
 import 'package:cool_template/validation/form_validation.dart';
 import 'package:flutter/material.dart';
@@ -9,13 +8,11 @@ class EditAccountPageTextFieldInputs extends StatelessWidget {
   const EditAccountPageTextFieldInputs({
     Key? key,
     required GlobalKey<FormBuilderState> formKey,
-    required this.accountInfo,
     required this.options,
   })  : _formKey = formKey,
         super(key: key);
 
   final GlobalKey<FormBuilderState> _formKey;
-  final JhipsterAccountInfo? accountInfo;
   final List<String> options;
 
   @override
@@ -30,7 +27,6 @@ class EditAccountPageTextFieldInputs extends StatelessWidget {
             child: FormBuilderTextField(
               name: 'firstName',
               autofocus: false,
-              initialValue: accountInfo?.firstName,
               decoration:
                   CustomInputDecoration.getInputDecoration('First name'),
               validator: FormValidator.validatorHumanNames(context),
@@ -40,7 +36,6 @@ class EditAccountPageTextFieldInputs extends StatelessWidget {
             padding: EdgeInsets.all(2.w),
             child: FormBuilderTextField(
               name: 'lastName',
-              initialValue: accountInfo?.lastName,
               autofocus: false,
               decoration: CustomInputDecoration.getInputDecoration('Last name'),
               validator: FormValidator.validatorHumanNames(context),
@@ -51,7 +46,6 @@ class EditAccountPageTextFieldInputs extends StatelessWidget {
             child: FormBuilderTextField(
               name: 'email',
               autofocus: false,
-              initialValue: accountInfo?.email,
               decoration: CustomInputDecoration.getInputDecoration('Email'),
               validator: FormValidator.validatorEmail(context),
             ),
@@ -60,7 +54,6 @@ class EditAccountPageTextFieldInputs extends StatelessWidget {
             padding: EdgeInsets.all(2.w),
             child: FormBuilderDropdown(
               name: 'langKey',
-              initialValue: accountInfo?.langKey,
               decoration: CustomInputDecoration.getInputDecoration('Language'),
               allowClear: true,
               validator: FormValidator.validatorDefault(context),

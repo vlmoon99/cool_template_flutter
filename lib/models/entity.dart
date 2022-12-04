@@ -1,3 +1,3 @@
-abstract class JhipsterEntity{
+abstract class Entity{
 
 }

@@ -1,5 +1,5 @@
-import 'package:cool_template/modules/jhipster_auth/widgets/forgot_password_page_actions_buttons.dart';
-import 'package:cool_template/modules/jhipster_auth/widgets/forgot_password_page_text_field_inputs.dart';
+import 'package:cool_template/modules/auth/widgets/forgot_password_page_actions_buttons.dart';
+import 'package:cool_template/modules/auth/widgets/forgot_password_page_text_field_inputs.dart';
 import 'package:cool_template/shared_widgets/logo.dart';
 import 'package:cool_template/theme/app_theme.dart';
 import 'package:flutter/material.dart';

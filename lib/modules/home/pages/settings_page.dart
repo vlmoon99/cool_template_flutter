@@ -1,13 +1,12 @@
 import 'package:cool_template/assets/localizations/localizations_strings.dart';
-import 'package:cool_template/modules/jhipster_home/services/jhipster_settings_service.dart';
 import 'package:cool_template/routes/routes.dart';
 import 'package:cool_template/theme/app_theme.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
-class JhipsterSettingsPage extends StatelessWidget {
-  const JhipsterSettingsPage({Key? key}) : super(key: key);
+class SettingsPage extends StatelessWidget {
+  const SettingsPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -57,12 +56,7 @@ class JhipsterSettingsPage extends StatelessWidget {
                   color: colors.black,
                 ),
               ),
-              onTap: () async {
-                final settingService = Modular.get<JhipsterSettingsService>();
-                settingService.clearAllData().then((value) {
-                  Modular.to.navigate(Routes.auth.getModule());
-                });
-              }),
+              onTap: () async {}),
         ],
       ),
     );

@@ -15,7 +15,7 @@ class Logo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SvgPicture.asset(
-      Images.jhipsterFamilyMan,
+      Images.familyMan,
       width: width,
       height: height,
     );
