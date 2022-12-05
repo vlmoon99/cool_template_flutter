@@ -1,9 +1,9 @@
 import 'package:cool_template/assets/localizations/localizations_strings.dart';
-import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
 
-class JhipsterEntityPage extends StatelessWidget {
-  const JhipsterEntityPage({Key? key}) : super(key: key);
+class EntityPage extends StatelessWidget {
+  const EntityPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

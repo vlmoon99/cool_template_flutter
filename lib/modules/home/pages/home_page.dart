@@ -1,6 +1,6 @@
 import 'package:cool_template/assets/localizations/localizations_strings.dart';
-import 'package:cool_template/modules/jhipster_home/pages/jhipster_entity_page.dart';
-import 'package:cool_template/modules/jhipster_home/pages/jhipster_settings_page.dart';
+import 'package:cool_template/modules/home/pages/entity_page.dart';
+import 'package:cool_template/modules/home/pages/settings_page.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
@@ -14,8 +14,8 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State {
   int _currentIndex = 0;
   final List<Widget> _children = [
-    const JhipsterEntityPage(),
-    const JhipsterSettingsPage(),
+    const EntityPage(),
+    const SettingsPage(),
   ];
   @override
   void initState() {

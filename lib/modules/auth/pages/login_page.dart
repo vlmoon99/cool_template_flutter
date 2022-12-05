@@ -1,5 +1,5 @@
-import 'package:cool_template/modules/jhipster_auth/widgets/reset_password_page_actions_buttons.dart';
-import 'package:cool_template/modules/jhipster_auth/widgets/reset_password_page_text_field_inputs.dart';
+import 'package:cool_template/modules/auth/widgets/login_page_actions_buttons.dart';
+import 'package:cool_template/modules/auth/widgets/login_page_text_field_inputs.dart';
 import 'package:cool_template/shared_widgets/logo.dart';
 import 'package:cool_template/theme/app_theme.dart';
 import 'package:flutter/material.dart';
@@ -7,8 +7,9 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:sizer/sizer.dart';
 
-class ResetPasswordPage extends StatelessWidget {
-  ResetPasswordPage({Key? key}) : super(key: key);
+
+class LoginPage extends StatelessWidget {
+  LoginPage({Key? key}) : super(key: key);
   final _formKey = GlobalKey<FormBuilderState>();
 
   @override
@@ -19,7 +20,6 @@ class ResetPasswordPage extends StatelessWidget {
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      appBar: AppBar(),
       body: Column(
         children: [
           Expanded(
@@ -29,13 +29,13 @@ class ResetPasswordPage extends StatelessWidget {
             ),
           ),
           Expanded(
-            child: ResetPasswordPageTextFieldInputs(
+            child: LoginPageTextFieldInputs(
               formKey: _formKey,
               textTheme: textTheme,
             ),
           ),
           Expanded(
-            child: ResetPasswordPageActionsButtons(
+            child: LoginPageActionsButtons(
               colors: colors,
               formKey: _formKey,
               textTheme: textTheme,

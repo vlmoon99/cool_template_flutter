@@ -1,15 +1,14 @@
-import 'package:cool_template/assets/localizations/localizations_strings.dart';
-import 'package:cool_template/modules/jhipster_home/widgets/change_password_page_actions_buttons.dart';
-import 'package:cool_template/modules/jhipster_home/widgets/change_password_page_text_field_inputs.dart';
+import 'package:cool_template/modules/auth/widgets/register_page_actions_buttons.dart';
+import 'package:cool_template/modules/auth/widgets/register_page_text_field_inputs.dart';
+import 'package:cool_template/shared_widgets/logo.dart';
 import 'package:cool_template/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:easy_localization/easy_localization.dart';
+import 'package:sizer/sizer.dart';
 
-class JhipsterChangePassword extends StatelessWidget {
-  JhipsterChangePassword({Key? key}) : super(key: key);
-
+class RegisterPage extends StatelessWidget {
+  RegisterPage({Key? key}) : super(key: key);
   final _formKey = GlobalKey<FormBuilderState>();
 
   @override
@@ -17,23 +16,29 @@ class JhipsterChangePassword extends StatelessWidget {
     final theme = Modular.get<AppTheme>();
     final textTheme = theme.getTheme().extension<MyTextStyles>()!;
     final colors = theme.getTheme().extension<MyColors>()!;
+
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          LocalizationsStrings.home.changePassword.title.tr(),
-        ),
-      ),
       resizeToAvoidBottomInset: false,
+      appBar: AppBar(),
       body: Column(
         children: [
           Expanded(
-            flex: 6,
-            child: ChangePasswordPageTextFieldInputs(
-              formKey: _formKey,
+            flex: 1,
+            child: Logo(
+              width: 50.w,
+              height: 40.w,
             ),
           ),
           Expanded(
-            child: ChangePasswordPageActionsButtons(
+            flex: 4,
+            child: RegisterPageTextFieldInputs(
+              formKey: _formKey,
+              textTheme: textTheme,
+            ),
+          ),
+          Expanded(
+            flex: 1,
+            child: RegisterPageActionsButtons(
               colors: colors,
               formKey: _formKey,
               textTheme: textTheme,
