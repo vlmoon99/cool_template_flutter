@@ -1,8 +1,8 @@
-import 'package:cool_template/assets/localizations/localizations_strings.dart';
-import 'package:cool_template/modules/home/pages/entity_page.dart';
-import 'package:cool_template/modules/home/pages/settings_page.dart';
-import 'package:easy_localization/easy_localization.dart';
+import 'package:cool_template/routes/routes.dart';
+import 'package:cool_template/theme/app_theme.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -12,46 +12,32 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State {
-  int _currentIndex = 0;
-  final List<Widget> _children = [
-    const EntityPage(),
-    const SettingsPage(),
-  ];
-  @override
-  void initState() {
-    super.initState();
-    setState(() {
-      _currentIndex = 0;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
+    final theme = Modular.get<AppTheme>();
+    final textTheme = theme.getTheme().extension<MyTextStyles>()!;
+    final colors = theme.getTheme().extension<MyColors>()!;
+
     return Scaffold(
-      body: _children[_currentIndex],
-      bottomNavigationBar: BottomNavigationBar(
-          onTap: (id) {
-            if (id == 0) {
-              setState(() {
-                _currentIndex = id;
-              });
-            } else if (id == 1) {
-              setState(() {
-                _currentIndex = id;
-              });
-            }
+      body: Center(
+        child: CupertinoButton(
+          onPressed: () {
+            Modular.to.navigate(Routes.auth.getModule());
           },
-          currentIndex: _currentIndex,
-          items: [
-            BottomNavigationBarItem(
-              icon: const Icon(Icons.add),
-              label: LocalizationsStrings.home.entity.title.tr(),
+          child: Container(
+            width: 200,
+            height: 50,
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+              color: colors.customColor,
+              borderRadius: BorderRadius.circular(10),
             ),
-            BottomNavigationBarItem(
-              icon: const Icon(Icons.settings),
-              label: LocalizationsStrings.home.settings.title.tr(),
+            child: const Text(
+              "Go to the auth module",
             ),
-          ]),
+          ),
+        ),
+      ),
     );
   }
 }

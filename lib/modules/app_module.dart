@@ -2,6 +2,7 @@ import 'package:cool_template/config/app_environment.dart';
 import 'package:cool_template/exceptions/exceptions.dart';
 import 'package:cool_template/network/network_checker.dart';
 import 'package:cool_template/network/network_client.dart';
+import 'package:cool_template/network/network_resource.dart';
 import 'package:cool_template/routes/routes.dart';
 import 'package:cool_template/routes_guard/auth_guard.dart';
 import 'package:cool_template/theme/app_theme.dart';
@@ -18,9 +19,6 @@ class AppModule extends Module {
   final List<Bind> binds = [
     Bind.singleton((i) => Catcher()),
     Bind.singleton((i) => NetworkChecker()),
-    Bind.singleton(
-      (i) => NetworkClient(i(), baseUrl: AppEnvironment.appUrl),
-    ),
     Bind.singleton((i) => const FlutterSecureStorage()),
     Bind.singleton((i) => AppTheme()),
     // Bind.singleton((i) => Logger(printer: PrettyPrinter(
@@ -30,7 +28,7 @@ class AppModule extends Module {
     //     colors: true, // Colorful log messages
     //     printEmojis: true, // Print an emoji for each log message
     //     printTime: false // Should each log print contain a timestamp
-    // ),)),
+    // ),),),
   ];
 
   @override
@@ -38,9 +36,6 @@ class AppModule extends Module {
     ModuleRoute(
       Routes.home.module,
       module: HomeModule(),
-      guards: [
-        AuthGuard(),
-      ],
     ),
     ModuleRoute(
       Routes.auth.module,

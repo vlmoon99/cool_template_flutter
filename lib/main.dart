@@ -10,7 +10,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:sizer/sizer.dart';
 
-
 //TODO Add tools for adaptive UI
 
 void main() {
@@ -24,29 +23,25 @@ void main() {
     FlutterError.onError = (details) {
       FlutterError.presentError(details);
       //TODO add catcher
-
     };
-  SystemChrome.setPreferredOrientations([
-    DeviceOrientation.portraitUp,
-    DeviceOrientation.portraitDown,
-  ]).then((value) => runApp(EasyLocalization(
-        supportedLocales: const [
-          Locale('en'),
-        ],
-        path: LocalizationsStrings.localizationPath,
-        fallbackLocale: const Locale('en'),
-        saveLocale: false,
-        child: ModularApp(
-          module: AppModule(),
-          child: AppWidget(isAuthorized),
-        ),
-      )));
-
-
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]).then((value) => runApp(EasyLocalization(
+          supportedLocales: const [
+            Locale('en'),
+          ],
+          path: LocalizationsStrings.localizationPath,
+          fallbackLocale: const Locale('en'),
+          saveLocale: false,
+          child: ModularApp(
+            module: AppModule(),
+            child: AppWidget(isAuthorized),
+          ),
+        )));
   }, (error, stack) {
     //Catch Errors not caught by Flutter
     //TODO add catcher
-
   });
 }
 
@@ -60,19 +55,18 @@ class AppWidget extends StatelessWidget {
     Modular.setInitialRoute(
         isAuthorized ? Routes.home.getModule() : Routes.auth.getModule());
 
-    return  Sizer(builder: (context, orientation, deviceType) {
-        return MaterialApp.router(
-          title: 'Cool Template',
-          routeInformationParser: Modular.routeInformationParser,
-          routerDelegate: Modular.routerDelegate,
-          localizationsDelegates: context.localizationDelegates,
-          supportedLocales: context.supportedLocales,
-          locale: context.locale,
-          // locale: EasyLocalization.of(context)!.locale,
-          // supportedLocales: EasyLocalization.of(context)!.supportedLocales,
-          // localizationsDelegates: EasyLocalization.of(context)!.delegates,
-        );
-      });
-
+    return Sizer(builder: (context, orientation, deviceType) {
+      return MaterialApp.router(
+        title: 'Cool Template',
+        routeInformationParser: Modular.routeInformationParser,
+        routerDelegate: Modular.routerDelegate,
+        localizationsDelegates: context.localizationDelegates,
+        supportedLocales: context.supportedLocales,
+        locale: context.locale,
+        // locale: EasyLocalization.of(context)!.locale,
+        // supportedLocales: EasyLocalization.of(context)!.supportedLocales,
+        // localizationsDelegates: EasyLocalization.of(context)!.delegates,
+      );
+    });
   }
 }

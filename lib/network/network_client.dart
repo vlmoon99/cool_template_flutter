@@ -12,8 +12,10 @@ class NetworkClient {
   NetworkClient(this.catcher, this.networkResource) {
     _dio = Dio();
     _dio.options.baseUrl = networkResource.baseUrl;
-    _dio.options.connectTimeout = networkResource.connectTimeout;
-    _dio.options.receiveTimeout = networkResource.receiveTimeout;
+    _dio.options.connectTimeout =
+        Duration(seconds: networkResource.connectTimeout);
+    _dio.options.receiveTimeout =
+        Duration(seconds: networkResource.receiveTimeout);
 
     for (var element in networkResource.interceptors) {
       _dio.interceptors.add(element);
