@@ -2,10 +2,11 @@ import 'package:cool_template/routes/routes.dart';
 import 'package:cool_template/theme/app_theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 class LoginPage extends StatelessWidget {
-  LoginPage({Key? key}) : super(key: key);
+  const LoginPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +18,9 @@ class LoginPage extends StatelessWidget {
       resizeToAvoidBottomInset: false,
       body: Center(
         child: CupertinoButton(
-          onPressed: () {
+          onPressed: () async {
+            // const channel = MethodChannel('crashy-custom-channel');
+            // await channel.invokeMethod('blah');
             Modular.to.navigate(Routes.home.getModule());
           },
           child: Container(

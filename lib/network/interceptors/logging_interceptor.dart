@@ -1,10 +1,8 @@
-
 import 'dart:developer';
 
 import 'package:dio/dio.dart';
 
 class LoggingInterceptor extends Interceptor {
-
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
     log('Make ${options.method} request to route ${options.path}');
@@ -15,8 +13,8 @@ class LoggingInterceptor extends Interceptor {
   void onResponse(Response response, ResponseInterceptorHandler handler) {
     log(
       'Get response status code(${response.statusCode})'
-          'Response body (${response.data.toString()})'
-          'from ${response.requestOptions.path}',
+      'Response body (${response.data.toString()})'
+      'from ${response.requestOptions.path}',
     );
     return super.onResponse(response, handler);
   }
@@ -25,10 +23,9 @@ class LoggingInterceptor extends Interceptor {
   void onError(DioError err, ErrorInterceptorHandler handler) {
     log(
       'Get error status code(${err.response?.statusCode})'
-          'Response body (${err.response!.data.toString()})'
-          'from: ${err.requestOptions.path}',
+      'Response body (${err.response!.data.toString()})'
+      'from: ${err.requestOptions.path}',
     );
-    //TODO Add catcher
     return super.onError(err, handler);
   }
 }

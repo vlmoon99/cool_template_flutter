@@ -25,9 +25,10 @@ class NetworkClient {
   AppExceptions handleError(DioError e) {
     final details = jsonDecode(e.response!.data)['detail'];
     final exception = AppExceptions(
-        messageForUser: details,
-        messageForDev: e.error.toString(),
-        statusCode: e.response!.statusCode!);
+      messageForUser: details,
+      messageForDev: e.error.toString(),
+      statusCode: e.response!.statusCode!,
+    );
     catcher.exceptionsHandler.add(exception);
     return exception;
   }

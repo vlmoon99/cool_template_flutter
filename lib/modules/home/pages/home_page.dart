@@ -15,13 +15,13 @@ class _HomePageState extends State {
   @override
   Widget build(BuildContext context) {
     final theme = Modular.get<AppTheme>();
-    final textTheme = theme.getTheme().extension<MyTextStyles>()!;
+    // final textTheme = theme.getTheme().extension<MyTextStyles>()!;
     final colors = theme.getTheme().extension<MyColors>()!;
 
     return Scaffold(
       body: Center(
         child: CupertinoButton(
-          onPressed: () {
+          onPressed: () async {
             Modular.to.navigate(Routes.auth.getModule());
           },
           child: Container(
