@@ -8,27 +8,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../config/app_environment.dart';
 
 Future<void> initOfApp(Environment environment) async {
-  if (environment == Environment.dev) {
-    await initializationsForDevMode();
-  } else {
-    await initializationsForProdMode();
-  }
-}
-
-Future<void> initializationsForDevMode() async {
-  AppEnvironment.setBaseUrl(Environment.dev);
-  enablePlatformOverrideForDesktop();
-  await EasyLocalization.ensureInitialized();
-  final prefs = await SharedPreferences.getInstance();
-  if (prefs.getBool('first_run') ?? true) {
-    const storage = FlutterSecureStorage();
-    await storage.deleteAll();
-    prefs.setBool('first_run', false);
-  }
-}
-
-Future<void> initializationsForProdMode() async {
-  AppEnvironment.setBaseUrl(Environment.prod);
+  AppEnvironment.setBaseUrl(environment);
   enablePlatformOverrideForDesktop();
   await EasyLocalization.ensureInitialized();
   final prefs = await SharedPreferences.getInstance();
@@ -51,4 +31,3 @@ Future<bool> checkIfUserAuthorized() async {
   final response = value == null ? false : true;
   return response;
 }
-

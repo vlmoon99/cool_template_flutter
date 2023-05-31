@@ -15,7 +15,6 @@ import 'package:sizer/sizer.dart';
 void main() {
   runZonedGuarded(() async {
     WidgetsFlutterBinding.ensureInitialized();
-    await EasyLocalization.ensureInitialized();
     await initOfApp(Environment.dev);
     final isAuthorized = await checkIfUserAuthorized();
 

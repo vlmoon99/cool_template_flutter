@@ -7,12 +7,12 @@ import 'package:flutter_modular/flutter_modular.dart' show Disposable;
 class NetworkChecker extends Disposable {
   String connectionStatus = 'Unknown';
   final Connectivity connectivity = Connectivity();
-  late StreamSubscription<ConnectivityResult> _connectivitySubscription;
+  late StreamSubscription<ConnectivityResult> connectivitySubscription;
 
-  NetworkChecker(){
+  NetworkChecker() {
     initConnectivity();
-    _connectivitySubscription =
-        connectivity.onConnectivityChanged.listen(_updateConnectionStatus);
+    connectivitySubscription =
+        connectivity.onConnectivityChanged.listen(updateConnectionStatus);
   }
 
   Future<void> initConnectivity() async {
@@ -22,10 +22,10 @@ class NetworkChecker extends Disposable {
     } on PlatformException catch (e) {
       log(e.toString());
     }
-    return _updateConnectionStatus(result);
+    return updateConnectionStatus(result);
   }
 
-  Future<void> _updateConnectionStatus(ConnectivityResult result) async {
+  Future<void> updateConnectionStatus(ConnectivityResult result) async {
     switch (result) {
       case ConnectivityResult.wifi:
       case ConnectivityResult.mobile:
@@ -40,7 +40,6 @@ class NetworkChecker extends Disposable {
 
   @override
   void dispose() {
-    _connectivitySubscription.cancel();
+    connectivitySubscription.cancel();
   }
-
 }

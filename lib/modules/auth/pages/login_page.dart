@@ -10,7 +10,7 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Modular.get<AppTheme>();
-    final textTheme = theme.getTheme().extension<MyTextStyles>()!;
+    // final textTheme = theme.getTheme().extension<MyTextStyles>()!;
     final colors = theme.getTheme().extension<MyColors>()!;
 
     return Scaffold(

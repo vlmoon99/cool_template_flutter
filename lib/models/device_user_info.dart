@@ -1,19 +1,16 @@
 import 'package:package_info_plus/package_info_plus.dart';
 
 class DeviceUserInfo {
-  late String _version;
-  late String _buildNumber;
+  late String version;
+  late String buildNumber;
 
   DeviceUserInfo() {
     setUserDeviceProperties();
   }
 
-  void setUserDeviceProperties () async{
+  void setUserDeviceProperties() async {
     PackageInfo packageInfo = await PackageInfo.fromPlatform();
-    _version = packageInfo.version;
-    _buildNumber = packageInfo.buildNumber;
+    version = packageInfo.version;
+    buildNumber = packageInfo.buildNumber;
   }
-
-  String get appBuildNumber => _buildNumber;
-  String get appVersion => _version;
 }

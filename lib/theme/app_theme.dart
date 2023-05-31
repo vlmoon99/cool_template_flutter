@@ -128,21 +128,6 @@ class MyTextStyles extends ThemeExtension<MyTextStyles> {
   String toString() => 'MyTextStyles(error: $error, loginButton: $loginButton)';
 }
 
-@immutable
-class CustomInputDecoration {
-  static InputDecoration getInputDecoration(String? labelText) {
-    return InputDecoration(
-      labelText: labelText ?? 'default',
-      border: const OutlineInputBorder(
-        borderRadius: BorderRadius.all(Radius.circular(10)),
-      ),
-      enabledBorder: const OutlineInputBorder(
-        borderRadius: BorderRadius.all(Radius.circular(25)),
-      ),
-    );
-  }
-}
-
 class AppTheme {
   final _darkTheme = ThemeData.dark().copyWith(
     extensions: <ThemeExtension<dynamic>>[
@@ -158,11 +143,9 @@ class AppTheme {
 
   final appThemeStream = BehaviorSubject<ThemeData>(sync: true);
 
-  //Add screen whe user can switch theme and watch on the value
   ThemeData getTheme() => appThemeStream.value;
 
   AppTheme() {
-    //add initial value
     appThemeStream.add(_lightTheme);
 
     final prefs = SharedPreferences.getInstance();

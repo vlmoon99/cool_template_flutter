@@ -41,7 +41,6 @@ dependencies:
   flutter_secure_storage: 8.0.0
   easy_localization: 3.0.2
   tap_debouncer: 2.2.0
-  flutter_form_builder: 9.0.0
   sizer: 2.0.15
   flutter_svg: 2.0.6
   connectivity_plus: 4.0.1

@@ -18,7 +18,6 @@ class AppExceptions {
 class Catcher {
   Catcher() {
     exceptionsHandler.listen((value) {
-      //TODO add modal with error for the client
       log(value.toString());
     });
   }

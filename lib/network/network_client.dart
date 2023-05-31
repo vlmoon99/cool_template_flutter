@@ -5,24 +5,24 @@ import 'package:cool_template/network/network_resource.dart';
 import 'package:dio/dio.dart';
 
 class NetworkClient {
-  late Dio _dio;
+  late Dio dio;
   final Catcher catcher;
   final NetworkResource networkResource;
 
   NetworkClient(this.catcher, this.networkResource) {
-    _dio = Dio();
-    _dio.options.baseUrl = networkResource.baseUrl;
-    _dio.options.connectTimeout =
+    dio = Dio();
+    dio.options.baseUrl = networkResource.baseUrl;
+    dio.options.connectTimeout =
         Duration(seconds: networkResource.connectTimeout);
-    _dio.options.receiveTimeout =
+    dio.options.receiveTimeout =
         Duration(seconds: networkResource.receiveTimeout);
 
     for (var element in networkResource.interceptors) {
-      _dio.interceptors.add(element);
+      dio.interceptors.add(element);
     }
   }
 
-  AppExceptions _handleError(DioError e) {
+  AppExceptions handleError(DioError e) {
     final details = jsonDecode(e.response!.data)['detail'];
     final exception = AppExceptions(
         messageForUser: details,
@@ -35,10 +35,10 @@ class NetworkClient {
   Future<ApiResponse> getRequest(String url) async {
     AppExceptions? appExceptions;
     try {
-      Response response = await _dio.get(url);
-      return ApiResponse.sucsess(response.data, response.statusCode!, true);
+      Response response = await dio.get(url);
+      return ApiResponse.success(response.data, response.statusCode!, true);
     } on DioError catch (e) {
-      appExceptions = _handleError(e);
+      appExceptions = handleError(e);
     }
     return ApiResponse.error(
         appExceptions.messageForDev, appExceptions.statusCode, false);
@@ -48,13 +48,13 @@ class NetworkClient {
     AppExceptions? appExceptions;
 
     try {
-      Response response = await _dio.post(
+      Response response = await dio.post(
         url,
         data: data,
       );
-      return ApiResponse.sucsess(response.data, response.statusCode!, true);
+      return ApiResponse.success(response.data, response.statusCode!, true);
     } on DioError catch (e) {
-      appExceptions = _handleError(e);
+      appExceptions = handleError(e);
     }
     return ApiResponse.error(
         appExceptions.messageForDev, appExceptions.statusCode, false);
@@ -64,10 +64,10 @@ class NetworkClient {
     AppExceptions? appExceptions;
 
     try {
-      Response response = await _dio.put(url, data: data);
-      return ApiResponse.sucsess(response.data, response.statusCode!, true);
+      Response response = await dio.put(url, data: data);
+      return ApiResponse.success(response.data, response.statusCode!, true);
     } on DioError catch (e) {
-      appExceptions = _handleError(e);
+      appExceptions = handleError(e);
     }
     return ApiResponse.error(
         appExceptions.messageForDev, appExceptions.statusCode, false);
@@ -77,10 +77,10 @@ class NetworkClient {
     AppExceptions? appExceptions;
 
     try {
-      Response response = await _dio.delete(url, data: data);
-      return ApiResponse.sucsess(response.data, response.statusCode!, true);
+      Response response = await dio.delete(url, data: data);
+      return ApiResponse.success(response.data, response.statusCode!, true);
     } on DioError catch (e) {
-      appExceptions = _handleError(e);
+      appExceptions = handleError(e);
     }
 
     return ApiResponse.error(
@@ -89,10 +89,10 @@ class NetworkClient {
 }
 
 class ApiResponse {
-  ApiResponse.sucsess(this.data, this.statusCode, this.isSucsess);
-  ApiResponse.error(this.data, this.statusCode, this.isSucsess);
+  ApiResponse.success(this.data, this.statusCode, this.isSuccess);
+  ApiResponse.error(this.data, this.statusCode, this.isSuccess);
 
   dynamic data;
   int statusCode;
-  bool isSucsess;
+  bool isSuccess;
 }
