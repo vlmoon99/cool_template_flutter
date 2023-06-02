@@ -129,24 +129,26 @@ class MyTextStyles extends ThemeExtension<MyTextStyles> {
 }
 
 class AppTheme {
-  final _darkTheme = ThemeData.dark().copyWith(
-    extensions: <ThemeExtension<dynamic>>[
+  final darkTheme = ThemeData.dark().copyWith(
+    extensions: [
       const MyColors.dark(),
       const MyTextStyles.defaultTextStyles(),
     ],
   );
 
-  final _lightTheme = ThemeData.light().copyWith(extensions: [
-    const MyColors.light(),
-    const MyTextStyles.defaultTextStyles(),
-  ]);
+  final lightTheme = ThemeData.light().copyWith(
+    extensions: [
+      const MyColors.light(),
+      const MyTextStyles.defaultTextStyles(),
+    ],
+  );
 
   final appThemeStream = BehaviorSubject<ThemeData>(sync: true);
 
   ThemeData getTheme() => appThemeStream.value;
 
   AppTheme() {
-    appThemeStream.add(_lightTheme);
+    appThemeStream.add(lightTheme);
 
     final prefs = SharedPreferences.getInstance();
 
@@ -155,22 +157,22 @@ class AppTheme {
 
       var themeMode = value ?? 'light';
       if (themeMode == 'light') {
-        appThemeStream.add(_lightTheme);
+        appThemeStream.add(lightTheme);
       } else {
-        appThemeStream.add(_darkTheme);
+        appThemeStream.add(darkTheme);
       }
     });
   }
 
   void setDarkMode() async {
-    appThemeStream.add(_darkTheme);
+    appThemeStream.add(darkTheme);
     final prefs = await SharedPreferences.getInstance();
 
     prefs.setString('themeMode', 'dark');
   }
 
   void setLightMode() async {
-    appThemeStream.add(_lightTheme);
+    appThemeStream.add(lightTheme);
     final prefs = await SharedPreferences.getInstance();
     prefs.setString('themeMode', 'light');
   }

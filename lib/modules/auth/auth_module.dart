@@ -8,6 +8,9 @@ class AuthModule extends Module {
 
   @override
   final List<ModularRoute> routes = [
-    ChildRoute(Routes.auth.login, child: (_, args) => const LoginPage()),
+    ChildRoute(
+      Routes.auth.login,
+      child: (_, args) => const LoginPage(),
+    ),
   ];
 }
