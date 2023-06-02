@@ -12,9 +12,9 @@ import 'home/home_module.dart';
 class AppModule extends Module {
   @override
   final List<Bind> binds = [
+    Bind.singleton((i) => Catcher(i())),
     Bind.singleton((i) => NetworkChecker()),
     Bind.singleton((i) => const FlutterSecureStorage()),
-    Bind.singleton((i) => Catcher(i())),
     Bind.singleton((i) => AppTheme()),
     Bind.singleton((i) => InactivityService(i())),
   ];

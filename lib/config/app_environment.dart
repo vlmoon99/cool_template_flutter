@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
+
 class AppEnvironment {
   static Environment environment = Environment.dev;
   static String appUrl = prodBaseUrl;
@@ -10,7 +12,7 @@ class AppEnvironment {
   static void setBaseUrl(Environment environment) {
     AppEnvironment.environment = environment;
     appUrl = environment == Environment.dev
-        ? Platform.isAndroid
+        ? !kIsWeb && Platform.isAndroid
             ? devBaseUrlAndroidEmulator
             : devBaseUrlIOSdEmulator
         : prodBaseUrl;

@@ -59,7 +59,6 @@ class Catcher {
   void showDialogForError(
     AppExceptions exception,
   ) {
-    // Display a dialog to show the error to the user
     showDialog(
       builder: (context) => AlertDialog(
         title: const Text('Error'),
@@ -74,11 +73,6 @@ class Catcher {
       context: Modular.routerDelegate.navigatorKey.currentContext!,
     );
   }
-}
-
-class AppErrorCodes {
-  static const errorFromZone = 0;
-  static const errorFromFlutter = 1;
 }
 
 class ErrorMessageHandler {

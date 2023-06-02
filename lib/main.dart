@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:developer';
 import 'package:cool_template/assets/localizations/localizations_strings.dart';
 import 'package:cool_template/config/app_environment.dart';
+import 'package:cool_template/config/constants.dart';
 import 'package:cool_template/exceptions/exceptions.dart';
 import 'package:cool_template/modules/app_module.dart';
 import 'package:cool_template/routes/routes.dart';
@@ -11,15 +12,13 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:sizer/sizer.dart';
-
-//TODO Add tools for adaptive UI
 
 void main() {
   runZonedGuarded(() async {
     WidgetsFlutterBinding.ensureInitialized();
     await initOfApp(Environment.dev);
-    final isAuthorized = await checkIfUserAuthorized();
     FlutterError.onError = (details) {
       final catcher = Modular.get<Catcher>();
       catcher.exceptionsHandler.add(
@@ -42,7 +41,7 @@ void main() {
           saveLocale: false,
           child: ModularApp(
             module: AppModule(),
-            child: AppWidget(isAuthorized),
+            child: const AppWidget(),
           ),
         )));
   }, (error, stack) {
@@ -60,9 +59,7 @@ void main() {
 }
 
 class AppWidget extends StatefulWidget {
-  final bool isAuthorized;
-  // ignore: use_key_in_widget_constructors
-  const AppWidget(this.isAuthorized);
+  const AppWidget({super.key});
 
   @override
   State<AppWidget> createState() => _AppWidgetState();
@@ -97,10 +94,13 @@ class _AppWidgetState extends State<AppWidget> with WidgetsBindingObserver {
 
   @override
   Widget build(BuildContext context) {
-    Modular.setInitialRoute(widget.isAuthorized
-        ? Routes.home.getModule()
-        : Routes.auth.getModule());
+    Modular.setInitialRoute(Routes.auth.getModule());
     final inactivityService = Modular.get<InactivityService>();
+
+    ScreenUtil.init(
+      context,
+      designSize: const Size(390, 800),
+    );
 
     return Listener(
       onPointerDown: (_) => inactivityService.reset(),

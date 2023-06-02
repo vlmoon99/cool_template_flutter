@@ -12,7 +12,7 @@ class CallBackTypes {
 }
 
 class InactivityService implements Disposable {
-  final int _duration = 3;
+  final int duration = 3;
   RestartableTimer? timer;
   final Queue<String> callbacksQueue = Queue<String>();
   final FlutterSecureStorage secureStorage;
@@ -34,14 +34,14 @@ class InactivityService implements Disposable {
   }
 
   void startExecuting() {
-    log("_timer?.isActive ${timer?.isActive}");
+    log("timer?.isActive ${timer?.isActive}");
   }
 
   void start() {
     isActiveTimer.add(true);
 
     timer = RestartableTimer(
-      Duration(seconds: _duration),
+      Duration(seconds: duration),
       () {
         log("Expired");
         isActiveTimer.add(false);
